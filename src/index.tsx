@@ -16,6 +16,7 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path='/home' element={<Home/>}></Route>
+      <Route path='/dashboard' element={<Home/>}></Route>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

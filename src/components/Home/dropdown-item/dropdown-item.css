@@ -1,0 +1,11 @@
+#div-dropdown-item {
+    z-index: 1;
+    position: absolute;
+    min-width: 20%;
+    cursor: pointer;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(253, 186, 203);
+    margin-top: 0.2rem;
+}

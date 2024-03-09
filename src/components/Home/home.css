@@ -1,0 +1,27 @@
+#header-home {
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(253, 186, 203);
+    z-index: 999;
+    position: relative;
+}
+
+
+#search-icon {
+    cursor: pointer;
+}
+
+#div-input-header {
+    min-width: 40%;
+}
+
+#div-logo-header, #div-icon-header {
+    text-align: center;
+    min-width: 20%;
+}
+
+#input-header-home {
+    width: 100%;
+}
