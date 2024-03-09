@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
 //Components
-import Home from './components/Home/home';
+import Home from './components/user/Home/home';
 
 // React-Router-Dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
