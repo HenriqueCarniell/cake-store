@@ -35,7 +35,6 @@ function FormLogin() {
             }).then(response => {
                 setMsg(response.data.msg)
             })
-
         } catch (err: unknown) {
             console.log(err);
         }
