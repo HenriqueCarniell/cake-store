@@ -12,7 +12,7 @@ function FormCreateAccount() {
                 </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nome: </Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="text" placeholder="Enter email" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">

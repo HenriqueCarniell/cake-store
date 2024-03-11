@@ -1,9 +1,46 @@
+// Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import '../formscss.css'
+// Forms CSS
+import '../formscss.css';
+
+// Hooks
+import { ChangeEvent, useState } from 'react';
+
+// Axios
+import axios from 'axios';
 
 function FormLogin() {
+    const [saveEmail, setEmail] = useState<string>('');
+    const [savePassword, setSenha] = useState<string>('');
+
+    const [saveMsg, setMsg] = useState<string>('')
+
+
+    let HandleSaveEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    }
+
+
+    let HandleSavePassword = (e: ChangeEvent<HTMLInputElement>) => {
+        setSenha(e.target.value);
+    }
+
+    let SaveAllDataLogin = () => {
+        try {
+            axios.post('http://localhost:4000/send/login/dados', {
+                EmailLogin: saveEmail,
+                PasswordLogin: savePassword
+            }).then(response => {
+                setMsg(response.data.msg)
+            })
+
+        } catch (err: unknown) {
+            console.log(err);
+        }
+    }
+
     return (
         <div id="FormLogin">
             <Form>
@@ -12,21 +49,21 @@ function FormLogin() {
                 </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email: </Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" placeholder="Enter email" onChange={HandleSaveEmail} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Senha: </Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" onChange={HandleSavePassword} />
                 </Form.Group>
+                <Form.Text className="text-muted">
+                    {saveMsg}
+                </Form.Text>
                 <div>
                     <p>Não tem uma conta ?<a href="/createaccount">Crie uma!</a></p>
                 </div>
-                <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
                 <div id="div-button-login-form">
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick={SaveAllDataLogin}>
                         Enviar
                     </Button>
                 </div>
