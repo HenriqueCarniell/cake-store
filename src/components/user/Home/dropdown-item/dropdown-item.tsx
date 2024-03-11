@@ -3,7 +3,7 @@ import './dropdown-item.css'
 function DropDownItem() {
     return (
         <div id="div-dropdown-item">
-                Faça Login
+            <a href="/login">Faça Login</a>
         </div>
     );
 }
