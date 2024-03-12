@@ -11,6 +11,8 @@ create table Usuario(
     Telefone char(11),
     senha VARCHAR(1000)
 );
+delete from usuario;
+select * from usuario;
 
 drop TABLE produto;
 create table Produto(

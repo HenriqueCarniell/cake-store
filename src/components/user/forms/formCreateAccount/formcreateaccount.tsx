@@ -47,14 +47,14 @@ function FormCreateAccount() {
     let HandlSaveCreateData = ():void => {
 
         ValidationCreateForm()
-        
+
         try {
             axios.post('http://localhost:4000/send/createaccount/dados', {
                 NameCreate:saveCreateName,
                 EmailCreate: saveCreateEmail,
                 PasswordCreate: saveCreatePAssword
             }).then(CreateResponseData => {
-                setMsg(CreateResponseData.data.msg);
+                console.log(CreateResponseData);
             })
         } catch(err: unknown) {
             console.log(err);
