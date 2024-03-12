@@ -18,16 +18,16 @@ function FormLogin() {
     const [saveMsg, setMsg] = useState<string>('')
 
 
-    let HandleSaveEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    let HandleSaveEmail = (e: ChangeEvent<HTMLInputElement>):void => {
         setEmail(e.target.value);
     }
 
 
-    let HandleSavePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    let HandleSavePassword = (e: ChangeEvent<HTMLInputElement>):void => {
         setSenha(e.target.value);
     }
 
-    let SaveAllDataLogin = () => {
+    let SaveAllDataLogin = ():void => {
         try {
             axios.post('http://localhost:4000/send/login/dados', {
                 EmailLogin: saveEmail,

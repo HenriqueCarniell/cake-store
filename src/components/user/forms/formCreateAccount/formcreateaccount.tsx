@@ -1,34 +1,89 @@
+//Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import '../formscss.css'
+//css
+import '../formscss.css';
+
+//axios
+import axios from 'axios';
+
+//react
+import { ChangeEvent, useState } from 'react';
 
 function FormCreateAccount() {
+    const [saveCreateName, setCreateName] = useState<string>('');
+    const [saveCreateEmail, setCreateEmail] = useState<string>('');
+    const [saveCreatePAssword, setCreatePAssword] = useState<string>('');
+
+    const [saveMsg, setMsg] = useState<string>('');
+
+    let HandleSaveCreateName = (e: ChangeEvent<HTMLInputElement>):void => {
+        setCreateName(e.target.value);
+    }
+
+    let HandleSaveCreateEmail = (e: ChangeEvent<HTMLInputElement>):void => {
+        setCreateEmail(e.target.value);
+    }
+
+    let HandleSaveCreatePassword = (e: ChangeEvent<HTMLInputElement>):void => {
+        setCreatePAssword(e.target.value);
+    }
+
+    let HandlSaveCreateData = () => {
+        try {
+            axios.post('http://localhost:4000/send/createaccount/dados', {
+                NameCreate:saveCreateName,
+                EmailCreate: saveCreateEmail,
+                PasswordCreate: saveCreatePAssword
+            }).then(CreateResponseData => {
+                setMsg(CreateResponseData.data.msg);
+            })
+        } catch(err: unknown) {
+            console.log(err);
+        }
+        ValidationCreateForm()
+    }
+
+    let ValidationCreateForm = () => {
+        if(!saveCreateName) {
+            return setMsg("Digite um Nome");
+        }
+
+        if(!saveCreateEmail) {
+            return setMsg("Digite um Email");
+        }
+
+        if(!saveCreatePAssword) {
+            return setMsg("Digite uma Senha");
+        }
+    }
+
     return ( 
         <div id="FormLogin">
             <Form>
                 <div id='div-titulo-form-login'>
                     <h1>Crie Sua Conta</h1>
                 </div>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Nome: </Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" />
+                    <Form.Control type="text" placeholder="Coloque um Nome" onChange={HandleSaveCreateName}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email: </Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" placeholder="Enter email" onChange={HandleSaveCreateEmail}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Senha: </Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" onChange={HandleSaveCreatePassword}/>
                 </Form.Group>
                 <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        {saveMsg}
                     </Form.Text>
                 <div id="div-button-login-form">
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick={HandlSaveCreateData}>
                         Enviar
                     </Button>
                 </div>
