@@ -30,22 +30,7 @@ function FormCreateAccount() {
         setCreatePAssword(e.target.value);
     }
 
-    let HandlSaveCreateData = () => {
-        try {
-            axios.post('http://localhost:4000/send/createaccount/dados', {
-                NameCreate:saveCreateName,
-                EmailCreate: saveCreateEmail,
-                PasswordCreate: saveCreatePAssword
-            }).then(CreateResponseData => {
-                setMsg(CreateResponseData.data.msg);
-            })
-        } catch(err: unknown) {
-            console.log(err);
-        }
-        ValidationCreateForm()
-    }
-
-    let ValidationCreateForm = () => {
+    let ValidationCreateForm = ():void => {
         if(!saveCreateName) {
             return setMsg("Digite um Nome");
         }
@@ -56,6 +41,23 @@ function FormCreateAccount() {
 
         if(!saveCreatePAssword) {
             return setMsg("Digite uma Senha");
+        }
+    }
+
+    let HandlSaveCreateData = ():void => {
+
+        ValidationCreateForm()
+        
+        try {
+            axios.post('http://localhost:4000/send/createaccount/dados', {
+                NameCreate:saveCreateName,
+                EmailCreate: saveCreateEmail,
+                PasswordCreate: saveCreatePAssword
+            }).then(CreateResponseData => {
+                setMsg(CreateResponseData.data.msg);
+            })
+        } catch(err: unknown) {
+            console.log(err);
         }
     }
 
