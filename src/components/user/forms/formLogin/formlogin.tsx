@@ -2,6 +2,8 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import { useNavigate } from 'react-router-dom';
+
 // Forms CSS
 import '../formscss.css';
 
@@ -27,13 +29,19 @@ function FormLogin() {
         setSenha(e.target.value);
     }
 
+    let nav = useNavigate()
+
     let SaveAllDataLogin = ():void => {
         try {
             axios.post('http://localhost:4000/send/login/dados', {
                 EmailLogin: saveEmail,
                 PasswordLogin: savePassword
-            }).then(response => {
+            }).then((response) => {
                 setMsg(response.data.msg)
+                if(response.data.sucess) {
+                    nav('/home')
+                }
+                console.log(response)
             })
         } catch (err: unknown) {
             console.log(err);
