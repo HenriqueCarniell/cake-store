@@ -18,19 +18,21 @@ function Dashboard() {
 
 
 
-                <div>
+                <div id="container-right">
                     <header id="Admin-content-container">
                         <div>
-                            <img src="" alt="" />
-                            <p>Gustavo Henrique</p>
-                        </div>
-
-                        <div>
                             <div>
-                                <button>Adicionar Item</button>
+                                <img src="" alt="" />
+                                <p>Gustavo Henrique</p>
                             </div>
                         </div>
                     </header>
+                    
+                    <main>
+                        <div>
+                            <button>Adicionar Item</button>
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>
