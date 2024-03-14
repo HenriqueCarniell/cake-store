@@ -17,7 +17,7 @@ function FormLogin() {
     const [saveEmail, setEmail] = useState<string>('');
     const [savePassword, setSenha] = useState<string>('');
 
-    const [saveMsg, setMsg] = useState<string>('')
+    const [saveMsg, setMsg] = useState<string>('');
 
 
     let HandleSaveEmail = (e: ChangeEvent<HTMLInputElement>):void => {

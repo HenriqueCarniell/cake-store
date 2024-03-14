@@ -9,6 +9,7 @@ import Home from './components/user/Home/home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormLogin from './components/user/forms/formLogin/formlogin';
 import FormCreateAccount from './components/user/forms/formCreateAccount/formcreateaccount';
+import Dashboard from './components/dashboard/dashboard';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,12 +17,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/dashboard' element={<Home/>}/>
-      <Route path='/login' element={<FormLogin/>}/>
-      <Route path='/createaccount' element={<FormCreateAccount/>}/>
-    </Routes>
+      <Routes>
+        <Route path='/home' element={<Home />} />
+        <Route path='/dashboard' element={<Home />} />
+        <Route path='/login' element={<FormLogin />} />
+        <Route path='/createaccount' element={<FormCreateAccount />} />
+      </Routes>
+
+      <Routes>
+        <Route path='/DashBoard/home' element={<Dashboard />} />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
