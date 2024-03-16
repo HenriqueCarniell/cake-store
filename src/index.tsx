@@ -22,9 +22,7 @@ root.render(
         <Route path='/dashboard' element={<Home />} />
         <Route path='/login' element={<FormLogin />} />
         <Route path='/createaccount' element={<FormCreateAccount />} />
-      </Routes>
-
-      <Routes>
+        
         <Route path='/DashBoard/home' element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
