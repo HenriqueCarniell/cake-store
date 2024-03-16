@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('../db/db')
 
 exports.getDataProduct = (req,res) => {
 
@@ -8,7 +8,12 @@ exports.getDataProduct = (req,res) => {
         if(err) {
             console.log(err);
         } else {
-            res.send(result)
+            // Convertendo a foto do produto para base64
+            const products = result.map(product => {
+                const photo = Buffer.from(product.fotoProduto).toString('base64');
+                return {...product, fotoProduto: photo};
+            });
+            res.json(products);
         }
     })
 }

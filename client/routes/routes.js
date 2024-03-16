@@ -1,5 +1,6 @@
 const express = require('express');
 const Router = express.Router();
+const upload = require('../multer/multerConfig');
 
 //Controllers 
 const saveLoginData = require('../controllers/saveLoginData');
@@ -10,7 +11,7 @@ const getDataProduct = require('../controllers/getDataProduct');
 //API
 Router.post('/send/login/dados', saveLoginData.Login);
 Router.post('/send/createaccount/dados', saveCreateData.Create);
-Router.post('/send/data/product', saveDataProduct.sendDataProduct);
 Router.get('/get/data/product', getDataProduct.getDataProduct);
+Router.post('/send/data/product', upload.single('file'), saveDataProduct.SendDataProduct);
 
 module.exports = Router;

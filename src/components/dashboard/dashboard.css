@@ -9,3 +9,8 @@
 #Admin-content-container {
     text-align: end;
 }
+
+#div-buy-add {
+    display: flex;
+    justify-content: space-around;
+}

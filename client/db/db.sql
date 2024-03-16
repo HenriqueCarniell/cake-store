@@ -9,6 +9,7 @@ create table Usuario(
     Nome VARCHAR(30),
     email VARCHAR(100),
     Telefone char(11),
+    fotoUsuario BLOB,
     senha VARCHAR(1000)
 );
 delete from usuario;
@@ -19,9 +20,10 @@ create table Produto(
     idProduto int PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(30),
     preco DOUBLE(5,2),
-    Descricao VARCHAR(100)
+    Descricao VARCHAR(100),
+    fotoProduto BLOB
 );
-
+delete from Produto;
 select * from produto;
 
 drop TABLE carrinho_usuario;

@@ -1,19 +1,24 @@
+// controllers/sendDataProduct.js
 const db = require('../db/db');
+const upload = require('../multer/multerConfig');
 
-exports.sendDataProduct = (req,res) => {
-    const {NameProduct, PriceProduct,DescProduct} = req.body;
+exports.SendDataProduct = (req, res) => {
+    const { NameProduct, PriceProduct, DescProduct } = req.body;
+    let PhotoProduct = req.file.filename;
 
-    const sql = "insert into Produto(Nome, preco, Descricao) values(?,?,?)";
+    console.log(NameProduct,PriceProduct,DescProduct,PhotoProduct)
 
-    db.query(sql,[NameProduct,PriceProduct, DescProduct], (err,result) => {
-        if(err) {
+    const sql = "INSERT INTO Produto (Nome, preco, Descricao, fotoProduto) VALUES (?, ?, ?, ?)";
+
+    db.query(sql, [NameProduct, PriceProduct, DescProduct, PhotoProduct], (err, result) => {
+        if (err) {
             console.log(err);
         }
 
-        if(result) {
-            res.json({msg: "Itens adicionados com sucesso"});
+        if (result) {
+            res.json({ msg: "Itens adicionados com sucesso" });
         } else {
-            res.json({msg: "Erro ao adicionar Itens"});
+            res.json({ msg: "Erro ao adicionar Itens" });
         }
-    })
-}
+    });
+};
