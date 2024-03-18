@@ -7,13 +7,13 @@ const saveLoginData = require('../controllers/saveLoginData');
 const saveCreateData = require('../controllers/saveCreateData');
 const saveDataProduct = require('../controllers/sendDataProduct');
 const getDataProduct = require('../controllers/getDataProduct');
-const putDataProduct = require('../controllers/putDataProduct');
+const deleteDataProduct = require('../controllers/deleteDataProduct');
 
 //API
 Router.post('/send/login/dados', saveLoginData.Login);
 Router.post('/send/createaccount/dados', saveCreateData.Create);
 Router.get('/get/data/product', getDataProduct.getDataProduct);
-Router.delete('http://localhost:4000/alter/admin/itens/:id', putDataProduct.alterData)
+Router.delete('/delete/admin/itens/:id', deleteDataProduct.deleteData)
 
 //Multer middleware
 Router.post('/send/data/product', upload.single('filename'), saveDataProduct.SendDataProduct);

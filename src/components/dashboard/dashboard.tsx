@@ -5,16 +5,16 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { Card, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import AlterDataModal from './alterModal/alterModal';
 
 
 function Dashboard() {
 
     interface Product {
         idProduto: number,
-        idUsuario: number,
-        Nome: string,
-        preco: number,
-        Descricao: number,
+        NomeProduto: string,
+        precoProduto: number,
+        DescricaoProduto: number,
         fotoProduto: any
     }
 
@@ -28,6 +28,8 @@ function Dashboard() {
     const [savePriceProduct, setPriceProduct] = useState<number>(0)
     const [saveDescProduct, setDescProduct] = useState<string>('')
     const [savePhotoProduct, setPhotoProduct] = useState<any>()
+
+    const [modalShow, setModalShow] = useState<boolean>(false);
 
     //Get Database Data
     const [saveDatabaseProsuct, setDatabaseProsuct] = useState<Product[]>([])
@@ -51,20 +53,12 @@ function Dashboard() {
     };
 
     let HandleDeleteAdminItens = (id: number) => {
-        axios.delete(`http://localhost:4000/delete/admin/itens/${id}`)
+        axios.delete(`http://localhost:4000/delete/admin/itens/${id}`,)
             .then((response) => {
                 console.log(response)
             })
+        setDatabaseProsuct(saveDatabaseProsuct.filter(itens => itens.idProduto !== id))
     }
-
-    let HandleAlterAdminItens = (id: number) => {
-        axios.put(`http://localhost:4000/alter/admin/itens/${id}`, {
-
-        }).then((response) => {
-            console.log(response)
-        })
-    }
-
 
     let HandleSaveCreateData = (): void => {
         const formData = new FormData();
@@ -180,16 +174,19 @@ function Dashboard() {
                                         </Card.Text>
 
                                         <div id="div-buy-add">
-                                            <Button variant="primary" onClick={() => HandleDeleteAdminItens(itens.idProduto)}>Alterar</Button>
-                                            <Button variant="warning" onClick={() => HandleAlterAdminItens(itens.idProduto)}>Excluir</Button>
+                                            <Button variant="primary" onClick={() => {setModalShow(true)}}>Alterar</Button>
+                                            <Button variant="warning" onClick={() => HandleDeleteAdminItens(itens.idProduto)}>Excluir</Button>
                                         </div>
+
                                     </Card.Body>
                                 </Card>
                             ))}
                         </div>
 
-
-
+                        <AlterDataModal
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
                     </main>
 
                 </div>
