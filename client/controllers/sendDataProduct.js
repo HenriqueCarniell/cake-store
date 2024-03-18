@@ -4,11 +4,11 @@ const upload = require('../multer/multerConfig');
 
 exports.SendDataProduct = (req, res) => {
     const { NameProduct, PriceProduct, DescProduct } = req.body;
-    let PhotoProduct = req.file.filename;
+    let PhotoProduct = req.file ? req.file.filename : null;
 
     console.log(NameProduct,PriceProduct,DescProduct,PhotoProduct)
 
-    const sql = "INSERT INTO Produto (Nome, preco, Descricao, fotoProduto) VALUES (?, ?, ?, ?)";
+    const sql = "INSERT INTO Produto (NomeProduto, precoProduto, DescricaoProduto, fotoProduto) VALUES (?, ?, ?, ?)";
 
     db.query(sql, [NameProduct, PriceProduct, DescProduct, PhotoProduct], (err, result) => {
         if (err) {

@@ -9,7 +9,7 @@ exports.getDataProduct = (req, res) => {
             console.log(err);
         } else {
             let newData = result.map((itens) => {
-                var bufferBase64 = itens.fotoProduto.toString('base64');
+                var bufferBase64 = itens.fotoProduto ? itens.fotoProduto.toString('base64') : null;
                 return {...itens, fotoProduto: bufferBase64}
             })
             res.send(newData);

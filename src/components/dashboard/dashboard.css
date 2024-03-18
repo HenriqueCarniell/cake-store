@@ -6,11 +6,24 @@
     width: 100%;
 }
 
-#Admin-content-container {
+#Admin-content-container-header {
+    padding: 5px;
+    margin-bottom: 3rem;
     text-align: end;
+}
+
+#Admin-content-container-main {
+    text-align: end;
+    margin-bottom: 3rem;
+    padding-right: 30px;
 }
 
 #div-buy-add {
     display: flex;
     justify-content: space-around;
+}
+
+#container-products-dashboard {
+    display: flex;
+    justify-content: space-between;
 }

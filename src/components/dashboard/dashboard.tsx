@@ -10,11 +10,12 @@ import Modal from 'react-bootstrap/Modal';
 function Dashboard() {
 
     interface Product {
+        idProduto: number,
         idUsuario: number,
         Nome: string,
         preco: number,
         Descricao: number,
-        fotoProduto: any;
+        fotoProduto: any
     }
 
     //Bootstrap
@@ -22,7 +23,7 @@ function Dashboard() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    //Set Data Forms
+    //Post Data Forms
     const [saveNameProduct, setNameProduct] = useState<string>('')
     const [savePriceProduct, setPriceProduct] = useState<number>(0)
     const [saveDescProduct, setDescProduct] = useState<string>('')
@@ -48,6 +49,21 @@ function Dashboard() {
             setPhotoProduct(e.target.files[0]);
         }
     };
+
+    let HandleDeleteAdminItens = (id: number) => {
+        axios.delete(`http://localhost:4000/delete/admin/itens/${id}`)
+            .then((response) => {
+                console.log(response)
+            })
+    }
+
+    let HandleAlterAdminItens = (id: number) => {
+        axios.put(`http://localhost:4000/alter/admin/itens/${id}`, {
+
+        }).then((response) => {
+            console.log(response)
+        })
+    }
 
 
     let HandleSaveCreateData = (): void => {
@@ -93,7 +109,7 @@ function Dashboard() {
 
 
                 <div id="container-right">
-                    <header id="Admin-content-container">
+                    <header id="Admin-content-container-header">
                         <div>
                             <div>
                                 <img src="" alt="" />
@@ -105,7 +121,7 @@ function Dashboard() {
                     <main>
 
                         <div>
-                            <div id="Admin-content-container">
+                            <div id="Admin-content-container-main">
                                 <Button variant="primary" onClick={handleShow}>
                                     Adicionar Produto
                                 </Button>
@@ -143,29 +159,29 @@ function Dashboard() {
                                     <Button variant="secondary" onClick={handleClose}>
                                         Fechar
                                     </Button>
-                                    <Button variant="primary" onClick={() => { HandleSaveCreateData(); handleClose() }}>
+                                    <Button variant="primary" onClick={() => { HandleSaveCreateData(); handleClose(); window.location.reload() }}>
                                         Enviar
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
                         </div>
 
-                        <div>
+                        <div id="container-products-dashboard">
                             {saveDatabaseProsuct.map((itens, index) => (
                                 <Card style={{ width: '20rem', height: "13rem" }} key={index}>
                                     <Card.Img variant="top" src={`data:image/png;base64,${itens.fotoProduto}`} />
                                     <Card.Body>
-                                        <Card.Title>{itens.Nome}</Card.Title>
+                                        <Card.Title>{itens.NomeProduto}</Card.Title>
                                         <Card.Text>
-                                            R$:{itens.preco}
+                                            R$:{itens.precoProduto}
                                         </Card.Text>
                                         <Card.Text>
-                                            Descrição:{itens.Descricao}
+                                            Descrição:{itens.DescricaoProduto}
                                         </Card.Text>
 
                                         <div id="div-buy-add">
-                                            <Button variant="primary">Comprar</Button>
-                                            <Button variant="warning">Adicionar ao carrinho</Button>
+                                            <Button variant="primary" onClick={() => HandleDeleteAdminItens(itens.idProduto)}>Alterar</Button>
+                                            <Button variant="warning" onClick={() => HandleAlterAdminItens(itens.idProduto)}>Excluir</Button>
                                         </div>
                                     </Card.Body>
                                 </Card>

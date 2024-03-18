@@ -18,9 +18,9 @@ select * from usuario;
 drop TABLE produto;
 create table Produto(
     idProduto int PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(30),
-    preco DOUBLE(5,2),
-    Descricao VARCHAR(100),
+    NomeProduto VARCHAR(30),
+    precoProduto DOUBLE(5,2),
+    DescricaoProduto VARCHAR(100),
     fotoProduto BLOB
 );
 delete from Produto;
