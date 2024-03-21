@@ -65,7 +65,7 @@ function Dashboard() {
         formData.append('NameProduct', saveNameProduct);
         formData.append('PriceProduct', savePriceProduct.toString());
         formData.append('DescProduct', saveDescProduct);
-        formData.append('file', savePhotoProduct)
+        formData.append('file', savePhotoProduct);
 
         try {
             axios.post('http://localhost:4000/send/data/product', formData)
@@ -174,7 +174,7 @@ function Dashboard() {
                                         </Card.Text>
 
                                         <div id="div-buy-add">
-                                            <Button variant="primary" onClick={() => {setModalShow(true)}}>Alterar</Button>
+                                            <Button variant="primary" onClick={() => { setModalShow(true) }}>Alterar</Button>
                                             <Button variant="warning" onClick={() => HandleDeleteAdminItens(itens.idProduto)}>Excluir</Button>
                                         </div>
 
