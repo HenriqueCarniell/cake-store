@@ -162,7 +162,7 @@ function Dashboard() {
 
                         <div id="container-products-dashboard">
                             {saveDatabaseProsuct.map((itens, index) => (
-                                <Card style={{ width: '20rem', height: "13rem" }} key={index}>
+                                <Card style={{ width: '20rem' }} key={index}>
                                     <Card.Img variant="top" src={`data:image/png;base64,${itens.fotoProduto}`} />
                                     <Card.Body>
                                         <Card.Title>{itens.NomeProduto}</Card.Title>

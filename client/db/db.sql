@@ -25,7 +25,6 @@ create table Produto(
 );
 delete from Produto;
 select * from produto;
-
 drop TABLE carrinho_usuario;
 create table Carrinho_Usuario (
     idCarrinho int PRIMARY KEY AUTO_INCREMENT,

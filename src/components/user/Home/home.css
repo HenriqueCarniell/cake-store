@@ -25,3 +25,12 @@
 #input-header-home {
     width: 100%;
 }
+
+#container-icons-add-remove {
+    display: flex;
+    align-items: baseline;
+}
+
+#container-icons-add-remove button{
+    height: 2rem;
+}

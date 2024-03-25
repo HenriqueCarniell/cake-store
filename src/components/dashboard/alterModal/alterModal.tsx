@@ -8,12 +8,20 @@ import { JSX } from 'react/jsx-runtime';
 
 function AlterDataModal(props: JSX.IntrinsicAttributes & Omit<Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & { ref?: ((instance: HTMLDivElement | null) => void) | RefObject<HTMLDivElement> | null | undefined; }, BsPrefixProps<"div"> & ModalProps> & BsPrefixProps<"div"> & ModalProps & { children?: ReactNode; }) {
 
+    interface ProductType {
+        idProduto: number,
+        NomeProduto: string,
+        precoProduto: number,
+        DescricaoProduto: string,
+        fotoProduto: Blob
+    }
+
     const [SaveNewName, SetNewName] = useState<string>('');
     const [SaveNewPrice, SetNewPrice] = useState<number>(0);
     const [SaveNewDesc, SetNewDesc] = useState<string>('');
     const [SaveNewPhoto, SetNewPhoto] = useState<string>('');
 
-    const [SaveNewData, SetNewData] = useState<any[]>([]);
+    const [SaveNewData, SetNewData] = useState<ProductType[]>([]);
 
 
     let HandleSaveNewName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +54,7 @@ function AlterDataModal(props: JSX.IntrinsicAttributes & Omit<Omit<DetailedHTMLP
             ))
 
         } catch (err: unknown) {
-            console.log(err)
+            console.log(err);
         }
     }
 
