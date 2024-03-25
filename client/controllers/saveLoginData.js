@@ -25,7 +25,16 @@ exports.Login = async (req, res) => {
             // Id do usuario será Global
             req.userId = user.idUsuario;
 
-            return res.json({ sucess: "Usuário Logado", token});
+
+            let cartItens = await getCartItems(user.idUsuario)
+            console.log(cartItens)
+
+            return res.json({ 
+                success: "Usuário Logado", 
+                token,
+                cartItens
+            });
+
         } else {
             return res.json({ msg: "Email ou Senha incorretos" });
         }
@@ -63,3 +72,25 @@ let ValidationLoginData = (emaillogin) => {
         })
     })
 }
+
+let getCartItems = (userId) => {
+    return new Promise((resolve, reject) => {
+        const sql = `
+            SELECT *
+            FROM Itens_Carrinho 
+            JOIN Carrinho_Usuario ON Itens_Carrinho.id_carrinho = Carrinho_Usuario.idCarrinho 
+            WHERE Carrinho_Usuario.id_usuario = ?
+        `;
+
+        db.query(sql, [userId], (err, result) => {
+            if (err) {
+                reject(err);
+                console.log(err);
+            }else {
+                resolve(result)
+                console.log(result)
+            }
+        })
+    })
+}
+

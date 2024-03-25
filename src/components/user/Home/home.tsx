@@ -35,7 +35,9 @@ function Home() {
     }
 
     let HandleSaveDataCart = (idProduct: number) => {
-        axios.post(`http://localhost:4000/send/data/user/cart/${idProduct}`)
+        axios.post(`http://localhost:4000/send/data/user/cart/${idProduct}`, {
+            countQuantity: saveCountQuantity
+        })
     }
 
     let sumQuantityProduct = () => {

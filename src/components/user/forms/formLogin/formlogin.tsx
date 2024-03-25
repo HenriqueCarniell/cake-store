@@ -38,8 +38,8 @@ function FormLogin() {
                 PasswordLogin: savePassword
             }).then((response) => {
                 setMsg(response.data.msg)
-                if(response.data.sucess) {
-                    nav('/home')
+                if(response.data.success) {
+                    nav('/')
                 }
                 console.log(response)
             })
