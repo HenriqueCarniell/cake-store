@@ -38,8 +38,15 @@ function Home() {
         axios.post(`http://localhost:4000/send/data/user/cart/${idProduct}`)
     }
 
-    let countQuantityProduct = () => {
+    let sumQuantityProduct = () => {
         setcountQuantity(saveCountQuantity+=1)
+    }
+
+    let degreeseQuantityProduct = () => {
+        if(saveCountQuantity <= 0) {
+            return
+        }
+        setcountQuantity(saveCountQuantity-=1)
     }
 
     useEffect(() => {
@@ -92,9 +99,9 @@ function Home() {
                                 </Card.Text>
 
                                 <div id="container-icons-add-remove">
-                                    <button><IoIosRemove /></button>
+                                    <button onClick={degreeseQuantityProduct}><IoIosRemove /></button>
                                     <p>{saveCountQuantity}</p>
-                                    <button onClick={countQuantityProduct}><IoIosAdd /></button>
+                                    <button onClick={sumQuantityProduct}><IoIosAdd /></button>
                                 </div>
 
                                 <div id="div-buy-add">
